@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
 
     <title>Brandon Eichler - Calculator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
@@ -11,22 +11,57 @@
 
     <!-- CSS Style Sheets -->
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/calculator.css">
 
     <!-- Fonts -->
 
-  </head>
+</head>
 
-  <body>
-
-  	<h1> Javascript Calculator </h1>
-
+<body>
+    <div class="wrapper">
+        <div id="calculator" class="container">
+            <div class="display-container">
+                <div id="display" class="well well-lg">
+                    0
+                </div>
+            </div>
+            <div id="row1" class="button-row">
+                <button id="ac">AC</button>
+                <button id="ce">CE</button>
+                <button id="percent">%</button>
+                <button id="divide">÷</button>
+            </div>
+            <div id="row2" class="button-row">
+                <button id="7">7</button>
+                <button id="8">8</button>
+                <button id="9">9</button>
+                <button id="10">x</button>
+            </div>
+            <div id="row3" class="button-row">
+                <button id="4">4</button>
+                <button id="5">5</button>
+                <button id="6">6</button>
+                <button id="subtract">-</button>
+            </div>
+            <div id="row4" class="button-row">
+                <button id="1">1</button>
+                <button id="2">2</button>
+                <button id="3">3</button>
+                <button id="add">+</button>
+            </div>
+            <div id="row2" class="button-row">
+                <button id="0">0</button>
+                <button id="point">.</button>
+                <button id="equals">=</button>
+            </div>
+        </div>
+    </div>
     <!-- Javascript Files -->
     <script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="javascript/calculator.js"></script>
 
-  </body>
+</body>
 
 </html>
