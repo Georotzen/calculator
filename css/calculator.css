@@ -23,6 +23,13 @@ body {
     padding: 5px 10px;
 }
 
+#shunt {
+    opacity: 0;
+    pointer-events: none;
+    width: 0px;
+    height: 100%;
+}
+
 .button-row {
     padding-left: 1px;
     display: block;
