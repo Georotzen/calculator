@@ -24,6 +24,7 @@ body {
 }
 
 .button-row {
+    padding-left: 1px;
     display: block;
 }
 
@@ -33,7 +34,7 @@ button {
     background: #101010;
     color: white;
     text-align: center;
-    width: 24.1%;
+    width: 76px;
     height: 50px;
     margin: 5px 0;
 }
@@ -41,4 +42,5 @@ button {
 #add {
     float: right;
     height: 110px;
+    margin-right: 3px;
 }
