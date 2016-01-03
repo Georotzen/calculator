@@ -5,7 +5,7 @@ body {
 
 .container {
     width: 350px;
-    height: 410px;
+    height: 440px;
     background: gray;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -15,24 +15,40 @@ body {
     padding-top: 20px;
 }
 
+.well {
+    margin-bottom: 5px;
+}
+
 #display {
     text-align: right;
     background: #252525;
     color: white;
     font-size: 28px;
     padding: 5px 10px;
+    min-height: 53px;
 }
 
-#shunt {
-    opacity: 0;
-    pointer-events: none;
-    width: 0px;
-    height: 100%;
+#history {
+    font-size: 18px;
+    text-align: right;
+    height: 45px;
+    font-weight: bold;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    direction: rtl;
+    text-overflow: ellipsis;
 }
 
 .button-row {
     padding-left: 1px;
     display: block;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 button {
@@ -44,6 +60,15 @@ button {
     width: 76px;
     height: 50px;
     margin: 5px 0;
+}
+
+.blank {
+    pointer-events: none;
+    cursor: default;
+    color: transparent;
+    -webkit-appearance: button;
+    -webkit-box-sizing: border-box;
+    -mox-box-sizing: border-box;
 }
 
 #add {
