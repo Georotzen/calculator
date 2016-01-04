@@ -79,7 +79,9 @@ function buttonActions(btn) {
         if (prevBtn === "operation") {
             $display.text("");
         }
-
+        if (btn === "0" && prevBtn === "number" && hasDec === false){
+        	return;
+        }
         if (prevBtn === "operation") {
             $display.append(btn);
             prevBtn = "number";
