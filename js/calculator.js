@@ -53,7 +53,7 @@ function buttonActions(btn) {
         $display.text(displayText);
     }
 
-    if (displayText === "NaN") {
+    if (displayText === "NaN" || displayText === "Infinity") {
         $history.text("");
         $display.text("");
         calcArr = [];
@@ -70,16 +70,24 @@ function buttonActions(btn) {
     }
 
     if (!isNaN(btn) || btn === ".") {
+        if (prevBtn === "equals") {
+            $display.text("");
+        }
         if (btn === ".") {
             hasDec = true;
         }
         if (prevBtn === "operation") {
             $display.text("");
         }
-        if (displayText.length < 16) {
+
+        if (prevBtn === "operation") {
+            $display.append(btn);
+            prevBtn = "number";
+        } else if (displayText.length < 20) {
             $display.append(btn);
             prevBtn = "number";
         }
+
     } else if (btn === "AC") {
         $display.text("");
         hasDec = false;
@@ -141,7 +149,7 @@ $(document).ready(function() {
     $("button").click(function() {
 
         // IE9 and older will not recognize pointer-events:none CSS rule on .blank.
-        // This effectively disables the blank button no matter the browser.
+        // This will effectively disables the blank button no matter the browser.
         if ($(this).hasClass("blank")) {
             return;
         }
