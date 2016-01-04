@@ -1,14 +1,20 @@
 // global variables
-var calcArr = [];
-var total = 0;
-var prevBtn;
-var displayText = "";
-var hasDec = false;
+var calcArr = [];		// stores the calculation to be made, also used to update history display
+var displayText = "";	// main display text in #display div
+var hasDec = false;		// used to prevent more than one decimal place from being entered at a time
+var prevBtn;			// stores the previous button that was clicked
+var total = 0;			// total to display after equals button is clicked
 
 // cache jQuery selectors
-var $display = $("#display");
-var $history = $("#history");
+var $display = $("#display");	// main display
+var $history = $("#history");	// calculation history display
 
+/*
+	Called from buttonActions() if btn === "="
+	Converts calcArr into a string so that eval() can be performed on it
+	Also swaps any "-" symbols for negative numbers back to the front of the number
+	 if the symbols were changed in the displayHistory() function (i.e. change "246-" to "-246")
+*/
 function convertCalcArr(arr) {
     var s = "";
     var tempNum = "";
@@ -26,6 +32,14 @@ function convertCalcArr(arr) {
     }
     return s;
 }
+
+/* 	
+	Called from buttonActions() any time a button is pressed.
+	Converts calcArr to a string and then displays the entered caculations in the #history div.
+	Also note that the history div uses a "text-overflow: ellipsis" as well as a "text-align: right", and "direction: rtl". 
+	  Because of this, the string must be reversed and then any negative number symbols ("-") must also be swapped
+	  to the end of the negative number in order to display correctly. (i.e. change "-246 to 246-")
+*/
 
 function displayHistory(arr) {
     var s = "";
@@ -69,6 +83,7 @@ function buttonActions(btn) {
         total = 0;
     }
 
+    // Any number button or decimal button
     if (!isNaN(btn) || btn === ".") {
         if (prevBtn === "equals") {
             $display.text("");
@@ -89,12 +104,13 @@ function buttonActions(btn) {
             $display.append(btn);
             prevBtn = "number";
         }
-
+  	// All Clear button
     } else if (btn === "AC") {
         $display.text("");
         hasDec = false;
         calcArr = [];
         prevBtn = "all-clear";
+ 	// Clear Entry button
     } else if (btn === "CE") {
         if (prevBtn === "equals") {
             $history.text("");
@@ -103,6 +119,7 @@ function buttonActions(btn) {
         hasDec = false;
         prevBtn = "clear-entry";
         return;
+ 	// Equals button
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
@@ -113,6 +130,7 @@ function buttonActions(btn) {
         total = eval(calcString);
         $display.text(total);
         prevBtn = "equals";
+  	// Any number button
     } else {
         if (prevBtn === "operation" || prevBtn === "clear-entry") {
             if ($history.text() != "" && $display.text() === "") {
@@ -130,14 +148,16 @@ function buttonActions(btn) {
         hasDec = false;
     }
 
-    displayHistory(calcArr);
-    displayText = $display.text();
+    displayHistory(calcArr);			// update history display
+    displayText = $display.text();		// update displaytext to store any change on main display
 
+    // if the main display length is too long, change font/padding to make it fit
     if (displayText.length > 18) {
         $display.css({
             "font-size": "22px",
             "padding-top": "12px"
         });
+ 	// change it back if display isn't too long to fit
     } else {
         $display.css({
             "font-size": "28px",
