@@ -1,5 +1,5 @@
 // global variables
-var inputArr = [];
+var calcArr = [];
 var total = 0;
 var prevBtn;
 var displayText = "";
@@ -9,27 +9,55 @@ var hasPoint = false;
 var $display = $("#display");
 var $history = $("#history");
 
-function reverseString(s) {
-    return s.split(/\s/).reverse().join(' ');
+function convertCalcArr(arr) {
+    var s = "";
+    var tempNum = "";
+    var tempArr = [];
+    for (var x = 0; x < arr.length; x++) {
+        tempNum = arr[x];
+        var end = tempNum.length - 1;
+        if (tempNum.charCodeAt(end) === 45 && !isNaN(tempNum.charCodeAt(0))) {
+            tempArr = tempNum.split("");
+            tempArr.splice(-1);
+            tempArr.unshift("-");
+            arr[x] = tempArr.join("");
+        }
+        s += arr[x] + " ";
+    }
+    return s;
 }
 
 function displayHistory(arr) {
-    var temp = "";
-
+    var s = "";
+    var tempNum = "";
+    var tempArr = [];
     for (var x = 0; x < arr.length; x++) {
-        temp += arr[x] + " ";
+        tempNum = arr[x];
+        if (tempNum.charCodeAt(0) === 45 && !isNaN(tempNum.charCodeAt(1))) {
+            tempArr = tempNum.split("");
+            tempArr.splice(0, 1);
+            tempArr.push("-");
+            arr[x] = tempArr.join("");
+        }
+        s += arr[x] + " ";
     }
-    temp = reverseString(temp);
-    $history.text(temp);
+    s = s.split(/\s/g).reverse().join(' ');
+    $history.text(s);
+
 }
 
-function buttonListener(btn) {
+function buttonActions(btn) {
     displayText = $display.text();
+
+    if (displayText.charCodeAt(0) === 46) {
+        displayText = "0" + displayText;
+        $display.text(displayText);
+    }
 
     if (displayText === "NaN") {
         $history.text("");
         $display.text("");
-        inputArr = [];
+        calcArr = [];
         total = 0;
         hasPoint = false;
         return;
@@ -38,7 +66,7 @@ function buttonListener(btn) {
     } else if (prevBtn === "equals") {
         $display.text("");
         hasPoint = false;
-        inputArr = [];
+        calcArr = [];
         total = 0;
     }
 
@@ -47,18 +75,18 @@ function buttonListener(btn) {
             hasPoint = true;
         }
 
+        if (prevBtn === "operation") {
+            $display.text("");
+        }
+
         if (displayText.length < 16) {
-            if (prevBtn === "operation") {
-                $display.text("");
-                hasPoint = false;
-            }
             $display.append(btn);
             prevBtn = "number";
         }
     } else if (btn === "AC") {
         $display.text("");
         hasPoint = false;
-        inputArr = [];
+        calcArr = [];
         prevBtn = "all-clear";
     } else if (btn === "CE") {
         if (prevBtn === "equals") {
@@ -69,43 +97,32 @@ function buttonListener(btn) {
         prevBtn = "clear-entry";
         return;
     } else if (btn === "=") {
-        inputArr.push(displayText);
-        var total = Number(inputArr[0]);
-        for (var x = 1; x < inputArr.length; x++) {
-            var opType = inputArr[x];
-            var secondNum = Number(inputArr[x + 1]);
+        var calcString = "";
+        calcArr.push(displayText);
 
-            if (opType === "+") {
-                total += secondNum;
-            } else if (opType === "-") {
-                total -= secondNum;
-            } else if (opType === "*") {
-                total *= secondNum;
-            } else if (opType === "/") {
-                total /= secondNum;
-            }
-
-            x++;
+        if (prevBtn === "operation") {
+            calcArr.splice(-2);
         }
 
+        calcString = convertCalcArr(calcArr);
+        total = eval(calcString);
         $display.text(total);
         prevBtn = "equals";
     } else {
         if (prevBtn === "operation" || prevBtn === "clear-entry") {
             if ($history.text() != "" && $display.text() === "") {
-                inputArr.splice(-1);
+                calcArr.splice(-1);
             } else {
-                inputArr.splice(-2);
+                calcArr.splice(-2);
             }
         }
-
-        inputArr.push(displayText);
-        inputArr.push(btn);
+        calcArr.push(displayText);
+        calcArr.push(btn);
         prevBtn = "operation";
+        hasPoint = false;
     }
 
-    displayHistory(inputArr);
-
+    displayHistory(calcArr);
     displayText = $display.text();
 
     if (displayText.length > 18) {
@@ -131,9 +148,8 @@ $(document).ready(function() {
             return;
         }
 
-        // cache the button and pass it into buttonActions()
         var btn = $(this).text();
-        buttonListener(btn);
+        buttonActions(btn);
     });
 
 
