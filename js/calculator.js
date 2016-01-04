@@ -3,7 +3,7 @@ var calcArr = [];
 var total = 0;
 var prevBtn;
 var displayText = "";
-var hasPoint = false;
+var hasDec = false;
 
 // cache jQuery selectors
 var $display = $("#display");
@@ -43,7 +43,6 @@ function displayHistory(arr) {
     }
     s = s.split(/\s/g).reverse().join(' ');
     $history.text(s);
-
 }
 
 function buttonActions(btn) {
@@ -59,33 +58,31 @@ function buttonActions(btn) {
         $display.text("");
         calcArr = [];
         total = 0;
-        hasPoint = false;
+        hasDec = false;
         return;
-    } else if (btn === "." && hasPoint) {
+    } else if (btn === "." && hasDec) {
         return;
     } else if (prevBtn === "equals") {
-        $display.text("");
-        hasPoint = false;
+        //$display.text("");
+        hasDec = false;
         calcArr = [];
         total = 0;
     }
 
     if (!isNaN(btn) || btn === ".") {
         if (btn === ".") {
-            hasPoint = true;
+            hasDec = true;
         }
-
         if (prevBtn === "operation") {
             $display.text("");
         }
-
         if (displayText.length < 16) {
             $display.append(btn);
             prevBtn = "number";
         }
     } else if (btn === "AC") {
         $display.text("");
-        hasPoint = false;
+        hasDec = false;
         calcArr = [];
         prevBtn = "all-clear";
     } else if (btn === "CE") {
@@ -93,17 +90,15 @@ function buttonActions(btn) {
             $history.text("");
         }
         $display.text("");
-        hasPoint = false;
+        hasDec = false;
         prevBtn = "clear-entry";
         return;
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
-
         if (prevBtn === "operation") {
             calcArr.splice(-2);
         }
-
         calcString = convertCalcArr(calcArr);
         total = eval(calcString);
         $display.text(total);
@@ -116,10 +111,13 @@ function buttonActions(btn) {
                 calcArr.splice(-2);
             }
         }
+        if (btn !== "-" && $display.text() === "") {
+            return;
+        }
         calcArr.push(displayText);
         calcArr.push(btn);
         prevBtn = "operation";
-        hasPoint = false;
+        hasDec = false;
     }
 
     displayHistory(calcArr);
