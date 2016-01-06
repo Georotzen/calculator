@@ -62,11 +62,13 @@ function displayHistory(arr) {
 function buttonActions(btn) {
     displayText = $display.text();
 
+    // change numbers like .23 to have a preceeding 0 (i.e. 0.23)
     if (displayText.charCodeAt(0) === 46) {
         displayText = "0" + displayText;
         $display.text(displayText);
     }
 
+    // error checks that will clear everything and exit the function
     if (displayText === "NaN" || displayText === "Infinity") {
         $history.text("");
         $display.text("");
@@ -74,10 +76,9 @@ function buttonActions(btn) {
         total = 0;
         hasDec = false;
         return;
-    } else if (btn === "." && hasDec) {
+    } else if (btn === "." && hasDec) {		// doesn't allow more than 1 decimal point per number entered
         return;
-    } else if (prevBtn === "equals") {
-        //$display.text("");
+    } else if (prevBtn === "equals") {		// always clear the history and calculation array if previous button was "=" 
         hasDec = false;
         calcArr = [];
         total = 0;
@@ -123,15 +124,17 @@ function buttonActions(btn) {
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
+        // if previous button was an operation we need to remove it from the array
         if (prevBtn === "operation") {
             calcArr.splice(-2);
         }
-        calcString = convertCalcArr(calcArr);
-        total = eval(calcString);
-        $display.text(total);
+        calcString = convertCalcArr(calcArr);		// converts the calculation array into a string
+        total = eval(calcString);					// perform eval() on that string to get the total of all operations
+        $display.text(total);						// show the total on the display
         prevBtn = "equals";
-  	// Any number button
+  	// Any operation button (+ | - | *  | /)
     } else {
+    	// allows selected operation to be changed without having to clear the display
         if (prevBtn === "operation" || prevBtn === "clear-entry") {
             if ($history.text() != "" && $display.text() === "") {
                 calcArr.splice(-1);
@@ -139,6 +142,7 @@ function buttonActions(btn) {
                 calcArr.splice(-2);
             }
         }
+        // only allow the - button to be used at the start of a new number / blank display
         if (btn !== "-" && $display.text() === "") {
             return;
         }
@@ -157,7 +161,7 @@ function buttonActions(btn) {
             "font-size": "22px",
             "padding-top": "12px"
         });
- 	// change it back if display isn't too long to fit
+ 	// change it back to default if the display is short enough to fit
     } else {
         $display.css({
             "font-size": "28px",
@@ -176,6 +180,7 @@ $(document).ready(function() {
             return;
         }
 
+        // Perform specific actions based on the button that was pressed.
         var btn = $(this).text();
         buttonActions(btn);
     });
