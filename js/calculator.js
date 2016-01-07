@@ -1,13 +1,13 @@
 // global variables
-var calcArr = [];		// stores the calculation to be made, also used to update history display
-var displayText = "";	// main display text in #display div
-var hasDec = false;		// used to prevent more than one decimal place from being entered at a time
-var prevBtn;			// stores the previous button that was clicked
-var total = 0;			// total to display after equals button is clicked
+var calcArr = []; // stores the calculation to be made, also used to update history display
+var displayText = ""; // main display text in #display div
+var hasDec = false; // used to prevent more than one decimal place from being entered at a time
+var prevBtn; // stores the previous button that was clicked
+var total = 0; // total to display after equals button is clicked
 
 // cache jQuery selectors
-var $display = $("#display");	// main display
-var $history = $("#history");	// calculation history display
+var $display = $("#display"); // main display
+var $history = $("#history"); // calculation history display
 
 /*
 	Called from buttonActions() if btn === "="
@@ -40,7 +40,6 @@ function convertCalcArr(arr) {
 	  Because of this, the string must be reversed and then any negative number symbols ("-") must also be swapped
 	  to the end of the negative number in order to display correctly. (i.e. change "-246 to 246-")
 */
-
 function displayHistory(arr) {
     var s = "";
     var tempNum = "";
@@ -76,9 +75,15 @@ function buttonActions(btn) {
         total = 0;
         hasDec = false;
         return;
-    } else if (btn === "." && hasDec) {		// doesn't allow more than 1 decimal point per number entered
+    }
+
+    // doesn't allow more than 1 decimal point per number entered
+    if (btn === "." && hasDec) {
         return;
-    } else if (prevBtn === "equals") {		// always clear the history and calculation array if previous button was "=" 
+    }
+
+    // always clear the calculation array and reset other variables if previous button was "=" 
+    if (prevBtn === "equals") {
         hasDec = false;
         calcArr = [];
         total = 0;
@@ -86,32 +91,29 @@ function buttonActions(btn) {
 
     // Any number button or decimal button
     if (!isNaN(btn) || btn === ".") {
-        if (prevBtn === "equals") {
+        if (prevBtn === "equals" || prevBtn === "operation") {
             $display.text("");
         }
         if (btn === ".") {
             hasDec = true;
         }
-        if (prevBtn === "operation") {
-            $display.text("");
-        }
-        if (btn === "0" && prevBtn === "number" && hasDec === false){
-        	return;
+        if (displayText.charCodeAt(0) === 48 && prevBtn === "number" && hasDec === false) {
+            return;
         }
         if (prevBtn === "operation") {
             $display.append(btn);
             prevBtn = "number";
-        } else if (displayText.length < 20) {
+        } else if (displayText.length < 16) { // only add the number/decimal if the total length is less than 16
             $display.append(btn);
             prevBtn = "number";
         }
-  	// All Clear button
+        // All Clear button
     } else if (btn === "AC") {
         $display.text("");
         hasDec = false;
         calcArr = [];
         prevBtn = "all-clear";
- 	// Clear Entry button
+        // Clear Entry button
     } else if (btn === "CE") {
         if (prevBtn === "equals") {
             $history.text("");
@@ -120,7 +122,7 @@ function buttonActions(btn) {
         hasDec = false;
         prevBtn = "clear-entry";
         return;
- 	// Equals button
+        // Equals button
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
@@ -128,13 +130,13 @@ function buttonActions(btn) {
         if (prevBtn === "operation") {
             calcArr.splice(-2);
         }
-        calcString = convertCalcArr(calcArr);		// converts the calculation array into a string
-        total = eval(calcString);					// perform eval() on that string to get the total of all operations
-        $display.text(total);						// show the total on the display
+        calcString = convertCalcArr(calcArr); // converts the calculation array into a string
+        total = eval(calcString); // perform eval() on that string to get the total of all operations
+        $display.text(total); // show the total on the display
         prevBtn = "equals";
-  	// Any operation button (+ | - | *  | /)
+        // Any operation button (+ | - | *  | /)
     } else {
-    	// allows selected operation to be changed without having to clear the display
+        // allows selected operation to be changed without having to clear the display
         if (prevBtn === "operation" || prevBtn === "clear-entry") {
             if ($history.text() != "" && $display.text() === "") {
                 calcArr.splice(-1);
@@ -152,8 +154,8 @@ function buttonActions(btn) {
         hasDec = false;
     }
 
-    displayHistory(calcArr);			// update history display
-    displayText = $display.text();		// update displaytext to store any change on main display
+    displayHistory(calcArr); // update history display
+    displayText = $display.text(); // update displaytext to store any change on main display
 
     // if the main display length is too long, change font/padding to make it fit
     if (displayText.length > 18) {
@@ -161,7 +163,7 @@ function buttonActions(btn) {
             "font-size": "22px",
             "padding-top": "12px"
         });
- 	// change it back to default if the display is short enough to fit
+        // change it back to default if the display is short enough to fit
     } else {
         $display.css({
             "font-size": "28px",
