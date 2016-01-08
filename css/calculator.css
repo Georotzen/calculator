@@ -86,15 +86,6 @@ button {
     border-radius: 10px;
 }
 
-.blank {
-    pointer-events: none;
-    cursor: default;
-    color: transparent;
-    -webkit-appearance: button;
-    -webkit-box-sizing: border-box;
-    -mox-box-sizing: border-box;
-}
-
 #add {
     float: right;
     height: 142px;

@@ -179,13 +179,6 @@ function buttonActions(btn) {
 $(document).ready(function() {
 
     $("button").click(function() {
-
-        // IE9 and older will not recognize pointer-events:none CSS rule on .blank.
-        // This will effectively disables the blank button no matter the browser.
-        if ($(this).hasClass("blank")) {
-            return;
-        }
-
         // Perform specific actions based on the button that was pressed.
         var btn = $(this).text();
         buttonActions(btn);
