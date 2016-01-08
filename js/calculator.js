@@ -122,7 +122,11 @@ function buttonActions(btn) {
         hasDec = false;
         prevBtn = "clear-entry";
         return;
-        // Equals button
+    } else if (btn === "←") {
+    	var t = displayText.slice(0, displayText.length - 1);
+    	displayText = t;
+    	$display.text(displayText);
+		// Equals button    	
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
@@ -187,6 +191,9 @@ $(document).ready(function() {
         buttonActions(btn);
     });
 
+    $("#home-btn").click(function(){
+    	$(".display-container, .button-container").fadeToggle(300, "swing");
+    });
 
     // these are used to remove the hover styling from the buttons after clicking on them
     $("button").mouseup(function() {
