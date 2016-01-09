@@ -184,6 +184,7 @@ $(document).ready(function() {
         buttonActions(btn);
     });
 
+    // Toggle Home and Calculator Screens
     $("#home-btn, .calculator-btn").click(function() {
         $(".display-container, .button-container").toggle("fast");
         $(".home-container").toggle("fast");

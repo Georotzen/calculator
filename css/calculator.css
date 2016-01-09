@@ -1,14 +1,37 @@
 body,
 html {
+    background: #E6E4D8;
     width: 100%;
     height: 100%;
-    background: #E6E4D8;
 }
 
-#calculator {
+button {
+    background: #101010;
+    color: white;
+    width: 70px;
+    height: 70px;
+    margin: 1px 0;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px 1px #2D292A, inset 1px 0 1px 1px #2D292A, 0 3px 5px 0 #000;
+    font-size: 30px;
+    text-align: center;
+    -webkit-text-align: center;
+    -moz-text-align: center;
+}
+
+button:active,
+button:focus {
+    outline: 0;
+    box-shadow: 0;
+}
+
+
+/*----- Main -----*/
+
+#phone {
+    background: black;
     width: 340px;
     height: 640px;
-    background: black;
     margin-top: 30px;
     margin-bottom: 30px;
     border: 5px solid #333;
@@ -17,76 +40,129 @@ html {
 
 .screen {
     background: #FEFEFE;
-    margin: 60px 0 20px 0;
     height: 485px;
+    margin: 60px 0 20px 0;
 }
 
+
+/*----- Home Screen -----*/
+
+.home-container {
+    background-image: linear-gradient(top, #c0c0c0 0%, #fff 25%, #fff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c0c0c0), color-stop(0.25, #fff), color-stop(0.5, #fff), color-stop(0.75, #c0c0c0), color-stop(1, #c0c0c0));
+    background-image: -moz-linear-gradient(top, #c0c0c0 0%, #fff 25%, #fff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -o-linear-gradient(top, #c0c0c0 0%, #fff 25%, #fff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -ms-linear-gradient(top, #c0c0c0 0%, #fff 25%, #fff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    color: black;
+    height: 100%;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    -webkit-text-align: center;
+    -moz-text-align: center;
+}
+
+.home-title {
+    margin-bottom: 0px;
+    margin-bottom: 5px;
+    padding: 20px 0px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.calculator-btn {
+    cursor: pointer;
+    width: 120px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.home-row {
+    margin: 0 auto;
+    padding-left: 10px;
+}
+
+.home-row > li {
+    display: inline-block;
+    height: 75px;
+    width: 80px;
+    margin: 5px;
+    list-style: none;
+}
+
+.home-row > li > a,
+.home-row > li > a:hover,
+.home-row > li > a:focus {
+    background: transparent;
+    color: black;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    font-size: 12px;
+}
+
+.copyright {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+
+/*----- Calculator Screen -----*/
+
 .display-container {
-    padding-top: 10px;
+    display: none;
     width: 100%;
     margin: 0 auto;
-    display: none;
+    padding-top: 10px;
 }
 
 .well {
     margin-bottom: 3px;
-    border: 0px;
+    border: 0;
     border-radius: 0;
     font-family: 'ABeeZee', sans-serif;
 }
 
 #display {
-    padding: 10px 10px 0 0;
-    text-align: right;
     background: #585858;
-    color: white;
-    font-size: 28px;
     min-height: 60px;
+    color: white;
+    padding: 10px 10px 0 0;
+    font-size: 28px;
+    text-align: right;
 }
 
 #history {
     background: transparent;
-    font-size: 18px;
-    text-align: right;
     height: 45px;
-    font-weight: bold;
-    white-space: nowrap;
     width: 100%;
-    overflow: hidden;
-    direction: rtl;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
     text-overflow: ellipsis;
+    direction: rtl;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .button-container {
+    display: none;
+    background: transparent;
     height: 350px;
     width: 300px;
-    background: transparent;
     margin: 0 auto;
-    display: none;
 }
 
 .button-row {
-    padding-left: 4.25px;
     display: block;
+    padding-left: 4.25px;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-button {
-    text-align: center;
-    -webkit-text-align: center;
-    -moz-text-align: center;
-    font-size: 30px;
-    background: #101010;
-    color: white;
-    width: 70px;
-    height: 70px;
-    margin: 1px 0;
-    border-radius: 10px;
 }
 
 #add {
@@ -111,67 +187,8 @@ button {
     background: #2E882E;
 }
 
-.home-container {
-    background-image: linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c0c0c0), color-stop(0.25, #ffffff), color-stop(0.5, #ffffff), color-stop(0.75, #c0c0c0), color-stop(1, #c0c0c0));
-    background-image: -moz-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
-    background-image: -o-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
-    background-image: -ms-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
-    height: 100%;
-    width: 100%;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 900;
-    color: black;
-}
 
-.home-title {
-    text-align: center;
-    font-size: 28px;
-    font-weight: bold;
-    padding: 20px 0px;
-    margin-bottom: 0px;
-    margin-bottom: 5px;
-}
-
-.calculator-btn {
-    margin: 0 auto;
-    width: 120px;
-    text-align: center;
-    margin-bottom: 30px;
-    cursor: pointer;
-}
-
-.home-row {
-    padding-left: 10px;
-    margin: 0 auto;
-}
-
-.home-row > li {
-    margin: 5px;
-    height: 75px;
-    width: 80px;
-    display: inline-block;
-    list-style: none;
-}
-
-.home-row > li > a,
-.home-row > li > a:hover,
-.home-row > li > a:focus {
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    border: none;
-    color: black;
-    background: transparent;
-    font-size: 12px;
-}
-
-.copyright {
-    margin-top: 0px;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 12px;
-}
+/*----- "Home" Button on Phone -----*/
 
 #home-btn {
     content: '';

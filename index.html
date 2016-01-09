@@ -10,8 +10,6 @@
 **  Project Source:     https://github.com/ShaggyTech/calculator
 **
 ****************************************************************************************************-->
-
-
 <!DOCTYPE html>
 <html>
 
@@ -30,8 +28,11 @@
 
 <body>
     <div class="wrapper">
-        <div id="calculator" class="container">
+        <!-- Main Phone -->
+        <div id="phone" class="container">
+            <!-- Phone Screen -->
             <div class="screen">
+                <!-- Home -->
                 <div class="home-container">
                     <div class="home-title">
                         Javascript Calculator
@@ -92,6 +93,8 @@
                         <img src="https://maxcdn.icons8.com/Color/PNG/24/Business/copyright-24.png" title="Copyright" width="24"> 2015 Brandon Eichler
                     </p>
                 </div>
+                <!-- END Home -->
+                <!-- Calculator -->
                 <div class="display-container">
                     <div id="history" class="well well-sm"></div>
                     <div id="display" class="well well-lg"></div>
@@ -127,9 +130,12 @@
                         <button id="equals">=</button>
                     </div>
                 </div>
+                <!-- END Calculator -->
             </div>
+            <!-- END Phone Screen -->
             <div id="home-btn"></div>
         </div>
+        <!-- END Main Phone -->
     </div>
     <!-- Javascript Files -->
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
