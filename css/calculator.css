@@ -1,6 +1,8 @@
-body {
+body,
+html {
     width: 100%;
     height: 100%;
+    background: #E6E4D8;
 }
 
 #calculator {
@@ -26,12 +28,14 @@ body {
     padding-top: 10px;
     width: 100%;
     margin: 0 auto;
+    display: none;
 }
 
 .well {
     margin-bottom: 3px;
     border: 0px;
     border-radius: 0;
+    font-family: 'ABeeZee', sans-serif;
 }
 
 #display {
@@ -61,6 +65,7 @@ body {
     width: 300px;
     background: transparent;
     margin: 0 auto;
+    display: none;
 }
 
 .button-row {
@@ -76,10 +81,11 @@ body {
 
 button {
     text-align: center;
+    -webkit-text-align: center;
+    -moz-text-align: center;
     font-size: 30px;
     background: #101010;
     color: white;
-    text-align: center;
     width: 70px;
     height: 70px;
     margin: 1px 0;
@@ -108,6 +114,68 @@ button {
     background: #2E882E;
 }
 
+.home-container {
+    background-image: linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c0c0c0), color-stop(0.25, #ffffff), color-stop(0.5, #ffffff), color-stop(0.75, #c0c0c0), color-stop(1, #c0c0c0));
+    background-image: -moz-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -o-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -ms-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    height: 100%;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: black;
+}
+
+.home-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 0px;
+    margin-bottom: 0px;
+    margin-bottom: 5px;
+}
+
+.calculator-btn {
+    margin: 0 auto;
+    width: 120px;
+    text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.home-row {
+    padding-left: 10px;
+    margin: 0 auto;
+}
+
+.home-row > li {
+    margin: 5px;
+    height: 75px;
+    width: 80px;
+    display: inline-block;
+    list-style: none;
+}
+
+.home-row > li > a,
+.home-row > li > a:hover,
+.home-row > li > a:focus {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border: none;
+    color: black;
+    background: transparent;
+    font-size: 12px;
+}
+
+.copyright {
+    margin-top: 0px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
+}
+
 #home-btn {
     content: '';
     width: 40px;
@@ -118,4 +186,5 @@ button {
     margin: 0 auto;
     background-color: transparent;
     box-shadow: 0 0 0 4px #999;
+    cursor: pointer;
 }
