@@ -122,7 +122,11 @@ function buttonActions(btn) {
         hasDec = false;
         prevBtn = "clear-entry";
         return;
-        // Equals button
+    } else if (btn === "←") {
+        var t = displayText.slice(0, displayText.length - 1);
+        displayText = t;
+        $display.text(displayText);
+        // Equals button    	
     } else if (btn === "=") {
         var calcString = "";
         calcArr.push(displayText);
@@ -158,7 +162,7 @@ function buttonActions(btn) {
     displayText = $display.text(); // update displaytext to store any change on main display
 
     // if the main display length is too long, change font/padding to make it fit
-    if (displayText.length > 18) {
+    if (displayText.length > 16) {
         $display.css({
             "font-size": "22px",
             "padding-top": "12px"
@@ -175,18 +179,15 @@ function buttonActions(btn) {
 $(document).ready(function() {
 
     $("button").click(function() {
-
-        // IE9 and older will not recognize pointer-events:none CSS rule on .blank.
-        // This will effectively disables the blank button no matter the browser.
-        if ($(this).hasClass("blank")) {
-            return;
-        }
-
         // Perform specific actions based on the button that was pressed.
         var btn = $(this).text();
         buttonActions(btn);
     });
 
+    $("#home-btn, .calculator-btn").click(function() {
+        $(".display-container, .button-container").toggle("fast");
+        $(".home-container").toggle("fast");
+    });
 
     // these are used to remove the hover styling from the buttons after clicking on them
     $("button").mouseup(function() {

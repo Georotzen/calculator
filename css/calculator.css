@@ -1,34 +1,51 @@
-body {
+body,
+html {
     width: 100%;
     height: 100%;
+    background: #E6E4D8;
 }
 
-.container {
-    width: 350px;
-    height: 440px;
-    background: gray;
-    margin-top: 50px;
-    margin-bottom: 50px;
+#calculator {
+    width: 340px;
+    height: 640px;
+    background: black;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border: 5px solid #333;
+    border-radius: 55px;
+}
+
+.screen {
+    background: #FEFEFE;
+    margin: 60px 0 20px 0;
+    height: 485px;
 }
 
 .display-container {
-    padding-top: 20px;
+    padding-top: 10px;
+    width: 100%;
+    margin: 0 auto;
+    display: none;
 }
 
 .well {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+    border: 0px;
+    border-radius: 0;
+    font-family: 'ABeeZee', sans-serif;
 }
 
 #display {
+    padding: 10px 10px 0 0;
     text-align: right;
-    background: #252525;
+    background: #585858;
     color: white;
     font-size: 28px;
-    padding: 5px 10px;
-    min-height: 53px;
+    min-height: 60px;
 }
 
 #history {
+    background: transparent;
     font-size: 18px;
     text-align: right;
     height: 45px;
@@ -40,8 +57,16 @@ body {
     text-overflow: ellipsis;
 }
 
+.button-container {
+    height: 350px;
+    width: 300px;
+    background: transparent;
+    margin: 0 auto;
+    display: none;
+}
+
 .button-row {
-    padding-left: 1px;
+    padding-left: 4.25px;
     display: block;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -53,26 +78,110 @@ body {
 
 button {
     text-align: center;
-    font-size: 20px;
+    -webkit-text-align: center;
+    -moz-text-align: center;
+    font-size: 30px;
     background: #101010;
     color: white;
-    text-align: center;
-    width: 76px;
-    height: 50px;
-    margin: 5px 0;
-}
-
-.blank {
-    pointer-events: none;
-    cursor: default;
-    color: transparent;
-    -webkit-appearance: button;
-    -webkit-box-sizing: border-box;
-    -mox-box-sizing: border-box;
+    width: 70px;
+    height: 70px;
+    margin: 1px 0;
+    border-radius: 10px;
 }
 
 #add {
     float: right;
-    height: 110px;
-    margin-right: 3px;
+    height: 142px;
+    margin-right: 4px;
+}
+
+.clear {
+    background: #AA3A3A;
+}
+
+#back {
+    background: #AA873A;
+}
+
+.operation {
+    background: #304073;
+}
+
+#equals {
+    background: #2E882E;
+}
+
+.home-container {
+    background-image: linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #c0c0c0), color-stop(0.25, #ffffff), color-stop(0.5, #ffffff), color-stop(0.75, #c0c0c0), color-stop(1, #c0c0c0));
+    background-image: -moz-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -o-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    background-image: -ms-linear-gradient(top, #c0c0c0 0%, #ffffff 25%, #ffffff 50%, #c0c0c0 75%, #c0c0c0 100%);
+    height: 100%;
+    width: 100%;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    color: black;
+}
+
+.home-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 0px;
+    margin-bottom: 0px;
+    margin-bottom: 5px;
+}
+
+.calculator-btn {
+    margin: 0 auto;
+    width: 120px;
+    text-align: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.home-row {
+    padding-left: 10px;
+    margin: 0 auto;
+}
+
+.home-row > li {
+    margin: 5px;
+    height: 75px;
+    width: 80px;
+    display: inline-block;
+    list-style: none;
+}
+
+.home-row > li > a,
+.home-row > li > a:hover,
+.home-row > li > a:focus {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border: none;
+    color: black;
+    background: transparent;
+    font-size: 12px;
+}
+
+.copyright {
+    margin-top: 0px;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+#home-btn {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 2px solid #555;
+    border-radius: 100%;
+    display: block;
+    margin: 0 auto;
+    background-color: transparent;
+    box-shadow: 0 0 0 4px #999;
+    cursor: pointer;
 }
